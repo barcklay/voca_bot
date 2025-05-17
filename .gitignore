@@ -1,0 +1,16 @@
+cat > .gitignore <<'EOF'
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS / VSCode
+.DS_Store
+.idea/
+.vscode/
+
+# DB и секреты
+*.db
+.env
+EOF
