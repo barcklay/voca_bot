@@ -1,10 +1,22 @@
 import logging, sys, asyncio
+from dotenv import load_dotenv
+import os, pathlib
+
+# ── 1. грузим .env
+load_dotenv(pathlib.Path(__file__).parent / ".env")
+
+# ── 2. читаем переменные
+TOKEN   = os.getenv("BOT_TOKEN")
+CHAT_ID = int(os.getenv("CHAT_ID"))
+
+print("MAIN TOKEN:", TOKEN[:15], "CHAT:", CHAT_ID)   # можно убрать позже
+
+# ── 3. теперь только подключаем telegram и scheduler
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from database import add_word, get_random_word, get_test_words
-from scheduler import setup_schedulers
+from scheduler import setup_schedulers   # ← импорт теперь после load_dotenv
 
-TOKEN = "7017753518:AAEB0v66Nk4t8N1MYY16zCDjxK9zXUymOPs"
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("apscheduler").setLevel(logging.INFO)
