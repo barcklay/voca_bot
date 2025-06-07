@@ -33,7 +33,7 @@ def setup_schedulers():
     sched = AsyncIOScheduler()
     logging.info("⏰ scheduling daily word and weekly test")
     # send daily word every day at 12:36 (for testing)
-    sched.add_job(send_word_daily, "cron", hour=12, minute=36)
+    sched.add_job(send_word_daily, "cron", hour=12, minute=38)
     # send weekly test every Monday at 09:30
     sched.add_job(send_weekly_test, "cron", day_of_week="mon", hour=9, minute=30)
     sched.start()
